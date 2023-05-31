@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  
+  </mat-toolbar>
+  
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav="matSidenav">
+  
+      <div class="links">
+        <a (click)="test(); sidenav.close()" mat-button>Go to product</a>
+        <a (click)="test(); sidenav.close()" mat-button>Go to client</a>
+        <a (click)="test(); sidenav.close()" mat-button>Go to User</a>
+        <a (click)="test(); sidenav.close()" mat-button>Logout</a>
+      </div>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+  
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
