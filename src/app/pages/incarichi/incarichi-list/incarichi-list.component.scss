@@ -9,7 +9,7 @@
     flex-grow: 1;
     margin: 10px;
     width: 100%;
-   // background-color: red; 
+   // background-color: red;
 }
 
 mat-form-field{
@@ -24,4 +24,9 @@ mat-form-field{
 .buttonContainer{
     width: 100%;
     text-align: right;
+}
+.hidden-row {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }

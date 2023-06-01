@@ -1,8 +1,8 @@
 export interface IAllegatiList {
-    Keyord: string
+    keyord: string
     contatore: number
     desc: string
-    DataAllegato: Date
-    Data_Rientro: Date
-    Rientrato: string
+    dataAllegato: Date
+    data_Rientro: Date
+    rientrato: string
   }

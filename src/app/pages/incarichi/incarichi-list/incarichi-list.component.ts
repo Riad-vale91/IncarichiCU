@@ -91,25 +91,16 @@ export class IncarichiListComponent implements OnInit {
    }
 
   onRowClicked(incarichi: IIncarichi) {
-  // console.log("Row clicked: ", incarichi);
-  // if (this.expandedElement === incarichi) {
-  //   this.expandedElement = null; // Se la riga è già espansa, contrai il dettaglio
-  // } else {
-  //   this.incarichiService.getAllegati(incarichi.key_ord).subscribe((resp: IAllegatiList[]) => {
-  //     this.selectedAllegati = resp;
-  //     this.expandedElement = incarichi; // Altrimenti, espandi il dettaglio della riga cliccata
-  //   });
-  console.log("keyord", incarichi.key_ord,"haccp",incarichi.haccp)
-  this.incarichiService.getAllegati(incarichi.key_ord,incarichi.haccp).subscribe(resp=>{
-    console.log("onRowClicked",resp)
-    this.listAllegati = resp;
-  })
+    console.log("Row clicked: ", incarichi);
 }
 toggleExpandedElement(row: IIncarichi) {
-  this.expandedElement = this.expandedElement === row ? null : row;
-
- }
-
+  this.listAllegati = [];
+  this.incarichiService.getAllegati(row.key_ord,row.haccp).subscribe(resp => {
+      console.log("onRowClicked",resp)
+      this.listAllegati = resp;
+      this.expandedElement = this.expandedElement === row ? null : row;
+  })
+}
 
 
 
