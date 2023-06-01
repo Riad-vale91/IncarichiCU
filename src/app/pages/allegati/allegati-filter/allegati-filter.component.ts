@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { IIncarichi } from 'src/app/models/IIncarichi';
+import { Component } from '@angular/core';
+import { IAllegatiList } from 'src/app/models/IAllegatiList';
 import { IncarichiService } from 'src/app/services/incarichi.service';
 
 @Component({
-  selector: 'app-incarichi-filter',
-  templateUrl: './incarichi-filter.component.html',
-  styleUrls: ['./incarichi-filter.component.scss']
+  selector: 'app-allegati-filter',
+  templateUrl: './allegati-filter.component.html',
+  styleUrls: ['./allegati-filter.component.scss']
 })
-export class IncarichiFilterComponent implements OnInit{
+export class AllegatiFilterComponent {
   searchText = '';
   incarichi: string = "";
-  filteredItems: IIncarichi[] = [];
+  filteredItems: IAllegatiList[] = [];
 
   constructor(private incarichiService: IncarichiService){}
 
@@ -24,6 +23,4 @@ export class IncarichiFilterComponent implements OnInit{
   onSearchTextChanged(searchText: string) {
     this.incarichiService.updateSearch(searchText);
   }
-
 }
-

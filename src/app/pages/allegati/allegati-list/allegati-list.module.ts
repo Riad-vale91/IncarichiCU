@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { IncarichiFilterRoutingModule } from './incarichi-filter-routing.module';
-import { IncarichiFilterComponent } from './incarichi-filter.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -15,16 +13,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
+import { AllegatiListRoutingModule } from './allegati-list-routing.module';
+import { AllegatiListComponent } from './allegati-list.component'; 
 
 @NgModule({
   declarations: [
-    IncarichiFilterComponent
+    AllegatiListComponent
   ],
   imports: [
     CommonModule,
-    IncarichiFilterRoutingModule,
+    AllegatiListRoutingModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
+    FormsModule,
+    RouterModule,
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
@@ -37,11 +41,10 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatCardModule,
     MatSelectModule,
-    FormsModule
+   
   ],
-  exports:
-  [
-    IncarichiFilterComponent
-  ]
+  exports:[
+    AllegatiListComponent,
+  ],
 })
-export class IncarichiFilterModule { }
+export class AllegatiListModule { }

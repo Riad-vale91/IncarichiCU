@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IncarichiViewComponent } from './incarichi-view.component';
+import { DatiViewComponent } from './dati-view.component';
 
-const routes: Routes = 
-[
+const routes: Routes = [
   {
-    path: "", component: IncarichiViewComponent,
+    path: "", component: DatiViewComponent,
   }
 ];
 
@@ -13,4 +12,4 @@ const routes: Routes =
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class IncarichiViewRoutingModule { }
+export class DatiViewRoutingModule { }
