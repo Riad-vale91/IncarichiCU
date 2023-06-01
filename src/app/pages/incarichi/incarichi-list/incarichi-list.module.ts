@@ -17,8 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { IncarichiFilterModule } from '../incarichi-filter/incarichi-filter.module';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -46,11 +46,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatSelectModule,
     IncarichiFilterModule,
-    MatIconModule
-   
+    MatIconModule,
 
   ],
-  exports: 
+  exports:
   [
     IncarichiListComponent
   ]
