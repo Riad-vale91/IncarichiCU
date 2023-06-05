@@ -24,10 +24,14 @@
         </ng-container>
 
         <ng-container matColumnDef="rientrato">
-          <th mat-header-cell *matHeaderCellDef> Rientrato </th>
-          <td mat-cell *matCellDef="let allegato"> {{allegato.rientrato}} <mat-icon (click)="eseguiAzione()" class="icon-right">image</mat-icon></td>
-          <mat-icon>image</mat-icon>
+            <th mat-header-cell *matHeaderCellDef> Rientrato </th>
+            <td mat-cell *matCellDef="let allegato" class="flex-container"> 
+                {{allegato.rientrato}} 
+                <mat-icon (click)="eseguiAzione()" class="icon-right">image</mat-icon>
+            </td>
         </ng-container>
+        
+        
 
         <!-- Table rows -->
         <tr mat-header-row *matHeaderRowDef="['contatore', 'desc', 'dataAllegato', 'dataRientro', 'rientrato']" class="my-header"></tr>
