@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { IncarichiFilterModule } from '../incarichi-filter/incarichi-filter.module';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IncarichiAllegatiModule } from '../incarichi-allegati/incarichi-allegati.module';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     IncarichiFilterModule,
     MatIconModule,
+    IncarichiAllegatiModule
 
   ],
   exports:

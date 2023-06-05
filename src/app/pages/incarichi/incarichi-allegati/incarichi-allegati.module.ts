@@ -12,6 +12,10 @@ import { IncarichiAllegatiComponent } from './incarichi-allegati.component';
   imports: [
     CommonModule,
     IncarichiAllegatiRoutingModule
+  ],
+  exports:
+  [
+    IncarichiAllegatiComponent
   ]
 })
 export class IncarichiAllegatiModule { }

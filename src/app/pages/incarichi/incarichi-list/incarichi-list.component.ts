@@ -17,13 +17,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   selector: 'app-incarichi-list',
   templateUrl: './incarichi-list.component.html',
   styleUrls: ['./incarichi-list.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-    state('collapsed', style({ height: '0px', minHeight: '0', display: 'none', visibility: 'hidden'})),
-        state('expanded', style({ height: '*', visibility: 'visible' })),
-        transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ])
-  ]
 
 })
 export class IncarichiListComponent implements OnInit {
