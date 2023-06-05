@@ -1,23 +1,21 @@
-<mat-toolbar>
+<mat-toolbar class="menuGradient menuShadow">
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-  
+
   </mat-toolbar>
-  
+
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav="matSidenav">
-  
+
       <div class="links">
         <a (click)="goToIncarichi(); sidenav.close()" mat-button>Go to Incarichi</a>
-        <a (click)="goToAllegati(); sidenav.close()" mat-button>Go to Allegati</a>
-        <a (click)="goToDati(); sidenav.close()" mat-button>Go to Data</a>
         <a (click)="test(); sidenav.close()" mat-button>Logout</a>
       </div>
     </mat-sidenav>
-  
+
     <mat-sidenav-content>
-  
+
       <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

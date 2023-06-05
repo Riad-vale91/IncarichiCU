@@ -12,20 +12,12 @@ export class HeaderPageComponent {
 
 }
 
-test() 
+test()
 {
   this.router.navigateByUrl("template/paginaDesiderata");
 }
-goToIncarichi() 
+goToIncarichi()
 {
   this.router.navigateByUrl("template/incarichi");
-}
-goToAllegati() 
-{
-  this.router.navigateByUrl("template/allegati");
-}
-goToDati() 
-{
-  this.router.navigateByUrl("template/dati");
 }
 }
