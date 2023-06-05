@@ -24,7 +24,7 @@ export class IncarichiListComponent implements OnInit {
 
   displayedColumns: string[] = ['codiceMago', 'ragSociale', 'prov', 'cap', 'comune', 'indirizzo', 'key_ord', 'servizio', 'eseguito',
   'annullato', 'dataFattTecnico', 'haccp'];
-  displayedColumnsAllegati: string[] = ['Keyord','contatore','desc','DataAllegato','Data_Rientro','Rientrato']
+  displayedColumnsAllegati: string[] = ['Keyord','contatore','desc','DataAllegato','Data_Rientro']
 
   public incarichiSubcription?: Subscription;
 

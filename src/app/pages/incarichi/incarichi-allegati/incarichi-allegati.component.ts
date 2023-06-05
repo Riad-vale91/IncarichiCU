@@ -25,4 +25,10 @@ export class IncarichiAllegatiComponent implements OnInit {
   eseguiAzione() {
     console.log("test");
   }
+  
+  logDataRientro(allegato: any) {
+    console.log(allegato);
+  }
+  
+  
 }

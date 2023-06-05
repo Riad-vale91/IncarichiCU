@@ -4,5 +4,5 @@ export interface IAllegatiList {
     desc: string
     dataAllegato: Date
     data_Rientro: Date
-    rientrato: string
+    
   }
