@@ -30,7 +30,7 @@
         </ng-container>
 
         <!-- Table rows -->
-        <tr mat-header-row *matHeaderRowDef="['contatore', 'desc', 'dataAllegato', 'dataRientro', 'rientrato']"></tr>
+        <tr mat-header-row *matHeaderRowDef="['contatore', 'desc', 'dataAllegato', 'dataRientro', 'rientrato']" class="my-header"></tr>
         <tr mat-row *matRowDef="let row; columns: ['contatore', 'desc', 'dataAllegato', 'dataRientro', 'rientrato'];"></tr>
       </table>
     </ng-container>
