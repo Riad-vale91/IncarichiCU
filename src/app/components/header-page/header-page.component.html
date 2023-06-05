@@ -3,13 +3,17 @@
       <mat-icon>menu</mat-icon>
     </button>
 
+    <span style="margin-left: 40px;">
+      Incarichi CU
+  </span>
+  <span class="example-spacer"></span>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav="matSidenav">
 
       <div class="links">
-        <a (click)="goToIncarichi(); sidenav.close()" mat-button>Go to Incarichi</a>
+        <a (click)="goToIncarichi(); sidenav.close()" mat-button>Incarichi</a>
         <a (click)="test(); sidenav.close()" mat-button>Logout</a>
       </div>
     </mat-sidenav>
