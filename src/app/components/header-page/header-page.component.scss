@@ -18,7 +18,7 @@ mat-toolbar{
     margin: 16px;
     width: 200px;
     border-right: none;
-    background:blue;
+    background:rgb(2,0,36);
     color: white;
     border-radius: 10px;
     padding: 16px;
@@ -95,4 +95,6 @@ mat-toolbar{
       width: 100%;
      // background-color: red;
   }
-
+  .custom-color {
+    color: white !important; /* Scegli il colore che preferisci */
+  }
