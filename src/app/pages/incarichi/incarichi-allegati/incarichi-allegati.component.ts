@@ -22,4 +22,7 @@ export class IncarichiAllegatiComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  eseguiAzione() {
+    console.log("test");
+  }
 }

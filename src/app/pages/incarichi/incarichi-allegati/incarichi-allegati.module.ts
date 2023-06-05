@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { IncarichiAllegatiRoutingModule } from './incarichi-allegati-routing.module';
 import { IncarichiAllegatiComponent } from './incarichi-allegati.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -13,12 +14,13 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     IncarichiAllegatiRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   exports:
   [
     IncarichiAllegatiComponent,
-    
+
   ]
 })
 export class IncarichiAllegatiModule { }
