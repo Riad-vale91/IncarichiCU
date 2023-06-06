@@ -7,13 +7,13 @@ import { IAllegatiList } from 'src/app/models/IAllegatiList';
   templateUrl: './incarichi-allegati.component.html',
   styleUrls: ['./incarichi-allegati.component.scss'],
   animations: [
-    trigger('detailExpand', [
-    state('collapsed', style({ height: '0px', minHeight: '0', display: 'none', visibility: 'hidden'})),
-        state('expanded', style({ height: '*', visibility: 'visible' })),
-        transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ])
-  ]
-})
+             trigger('detailExpand', [
+             state('collapsed', style({ height: '0px', minHeight: '0', display: 'none', visibility: 'hidden'})),
+             state('expanded', style({ height: '*', visibility: 'visible' })),
+             transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+                                      ])
+              ]
+          })
 export class IncarichiAllegatiComponent implements OnInit {
   @Input() allegati: IAllegatiList[] = [];
   @Input() expandedElement: any;
@@ -25,10 +25,10 @@ export class IncarichiAllegatiComponent implements OnInit {
   eseguiAzione() {
     console.log("test");
   }
-  
+
   logDataRientro(allegato: any) {
     console.log(allegato);
   }
-  
-  
+
+
 }

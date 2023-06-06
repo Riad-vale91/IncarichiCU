@@ -48,10 +48,6 @@ export class IncarichiListComponent implements OnInit {
   {  }
 
   ngOnInit(): void {
-    // this.incarichiService.getAllegati("201376070010", 0).subscribe(resp=>{
-    //   console.log(resp);
-    //   debugger;
-    // })
     this.getAllList();
     this.dataSource.filterPredicate = (data: IIncarichi, filter: string) => {
       const dataStr = JSON.stringify(data).toLowerCase();

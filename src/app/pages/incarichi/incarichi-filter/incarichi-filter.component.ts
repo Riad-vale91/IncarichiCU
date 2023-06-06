@@ -16,10 +16,6 @@ export class IncarichiFilterComponent implements OnInit{
   constructor(private incarichiService: IncarichiService){}
 
   ngOnInit() {
-    // this.incarichiService.UpdateIncarichiCombo().subscribe(resp => {
-    //   this.filteredItems = resp;
-    //   this.incarichi = this.filteredItems;
-    // });
   }
   onSearchTextChanged(searchText: string) {
     this.incarichiService.updateSearch(searchText);
