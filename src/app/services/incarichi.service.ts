@@ -9,7 +9,7 @@ import { IAllegatiList } from '../models/IAllegatiList';
 })
 export class IncarichiService {
 
-  private baseUrl = 'http://localhost:5000/';  
+  private baseUrl = 'http://localhost:5000/';
   private searchSubject: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(private http: HttpClient) { }
@@ -22,8 +22,8 @@ export class IncarichiService {
     return this.http.get(this.baseUrl+"GetAllegatiList");
   }
 
-  getAllegatiData(): Observable<any> {
-    return this.http.get(this.baseUrl+"GetAllegatiData");
+  getAllegatiData(rientro: number): Observable<any> {
+    return this.http.get(this.baseUrl + "GetAllegatiData?rientro="+rientro, { responseType: 'blob' });
   }
 
 updateSearch(searchText: string) {

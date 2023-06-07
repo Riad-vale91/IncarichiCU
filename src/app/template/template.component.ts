@@ -12,7 +12,7 @@ export class TemplateComponent implements OnInit {
   allegatiData: any;
 
   constructor(private incarichiservice: IncarichiService) { }
-  
+
   ngOnInit(): void {
     this.incarichiservice.getIncarichi().subscribe(data => {
       this.incarichi = data;
@@ -22,9 +22,6 @@ export class TemplateComponent implements OnInit {
       this.allegatiList = data;
       console.log('AllegatiList:', this.allegatiList);
     });
-    this.incarichiservice.getAllegatiData().subscribe(data => {
-      this.allegatiData = data;
-      console.log('AllegatiData:', this.allegatiData);
-    });
+
   }
 }
