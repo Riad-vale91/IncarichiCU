@@ -11,7 +11,7 @@ export class IncarichiService {
 
   private baseUrl = 'http://localhost:5000/';
   private searchSubject: BehaviorSubject<string> = new BehaviorSubject('');
-
+  private selectedIncarichiData = { key_ord: '', haccp: 0 };
   constructor(private http: HttpClient) { }
 
   getIncarichi(): Observable<any> {
@@ -22,10 +22,9 @@ export class IncarichiService {
     return this.http.get(this.baseUrl+"GetAllegatiList");
   }
 
-  getAllegatiData(rientro: number): Observable<any> {
-    return this.http.get(this.baseUrl + "GetAllegatiData?rientro="+rientro, { responseType: 'blob' });
+  getAllegatiData(rientro: number, key_ord: string, haccp: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}GetAllegatiData?rientro=${rientro}&keyord=${key_ord}&haccp=${haccp}`, { responseType: 'blob' });
   }
-
 updateSearch(searchText: string) {
   this.searchSubject.next(searchText);
 }
@@ -36,7 +35,14 @@ getSearchObservable(): Observable<string> {
  getAllegati(keyord: string, haccp:number): Observable<IAllegatiList[]> {
   return this.http.get<IAllegatiList[]>(`${this.baseUrl}GetAllegatiList?keyord=${keyord}&haccp=${haccp}`);
  }
+ setSelectedIncarichiData(key_ord: string, haccp: number) {
+  this.selectedIncarichiData.key_ord = key_ord;
+  this.selectedIncarichiData.haccp = haccp;
+}
 
+getSelectedIncarichiData() {
+  return this.selectedIncarichiData;
+}
 
 
 

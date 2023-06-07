@@ -84,6 +84,7 @@ export class IncarichiListComponent implements OnInit {
 }
 toggleExpandedElement(row: IIncarichi) {
   this.listAllegati = [];
+  this.incarichiService.setSelectedIncarichiData(row.key_ord,row.haccp); // Imposta i dati selezionati nel servizio
   this.incarichiService.getAllegati(row.key_ord,row.haccp).subscribe(resp => {
       console.log("onRowClicked",resp)
       this.listAllegati = resp;
