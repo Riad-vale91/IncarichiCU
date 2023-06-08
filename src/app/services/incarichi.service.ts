@@ -22,8 +22,8 @@ export class IncarichiService {
     return this.http.get(this.baseUrl+"GetAllegatiList");
   }
 
-  getAllegatiData(rientro: number, key_ord: string, haccp: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}GetAllegatiData?rientro=${rientro}&keyord=${key_ord}&haccp=${haccp}`, { responseType: 'blob' });
+  getAllegatiData(rientro: number, key_ord: string, haccp: number, contatore: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}GetAllegatiData?rientro=${rientro}&keyord=${key_ord}&haccp=${haccp}&contatore=${contatore}`, { responseType: 'blob' });
   }
 updateSearch(searchText: string) {
   this.searchSubject.next(searchText);

@@ -24,10 +24,10 @@ export class IncarichiAllegatiComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  eseguiAzione(rientro: number) {
-    const { key_ord, haccp } = this.incarichiService.getSelectedIncarichiData(); // Recupera i dati dal servizio
-    console.log(`Key_ord: ${key_ord}, Haccp: ${haccp}`); // Stampa i dati in console
-    this.incarichiService.getAllegatiData(rientro, key_ord, haccp).subscribe(
+  eseguiAzione(rientro: number, contatore: number) {
+    const { key_ord, haccp } = this.incarichiService.getSelectedIncarichiData();
+    console.log(`Key_ord: ${key_ord}, Haccp: ${haccp}, Contatore: ${contatore}`);
+    this.incarichiService.getAllegatiData(rientro, key_ord, haccp, contatore).subscribe(
       response => {
         const blob = new Blob([response], { type: 'application/x-rar-compressed' });
         saveAs(blob, 'FileTest.rar');
