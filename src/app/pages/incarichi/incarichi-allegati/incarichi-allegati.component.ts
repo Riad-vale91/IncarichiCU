@@ -1,6 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import {animate,state,style,transition,trigger,} from '@angular/animations';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as saveAs from 'file-saver';
+import { Subscription } from 'rxjs';
 import { IAllegatiList } from 'src/app/models/IAllegatiList';
 import { IncarichiService } from 'src/app/services/incarichi.service';
 
@@ -9,61 +10,58 @@ import { IncarichiService } from 'src/app/services/incarichi.service';
   templateUrl: './incarichi-allegati.component.html',
   styleUrls: ['./incarichi-allegati.component.scss'],
   animations: [
-             trigger('detailExpand', [
-             state('collapsed', style({ height: '0px', minHeight: '0', display: 'none', visibility: 'hidden'})),
-             state('expanded', style({ height: '*', visibility: 'visible' })),
-             transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-                                      ])
-              ]
-          })
-export class IncarichiAllegatiComponent implements OnInit {
+    trigger('detailExpand', [
+      state(
+        'collapsed',
+        style({
+          height: '0px',
+          minHeight: '0',
+          display: 'none',
+          visibility: 'hidden',
+        })
+      ),
+      state('expanded', style({ height: '*', visibility: 'visible' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
+})
+export class IncarichiAllegatiComponent implements OnInit, OnDestroy {
   @Input() allegati: IAllegatiList[] = [];
   @Input() expandedElement: any;
 
-  constructor(private incarichiService: IncarichiService) { }
+  public incarichiSub: Subscription = new Subscription(); // Inizializza la Subscription
 
-  ngOnInit(): void {
+  constructor(private incarichiService: IncarichiService) {}
+
+  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    this.incarichiSub.unsubscribe();
   }
+
   eseguiAzione(rientro: number, contatore: number) {
     const { key_ord, haccp } = this.incarichiService.getSelectedIncarichiData();
-    console.log(`Key_ord: ${key_ord}, Haccp: ${haccp}, Contatore: ${contatore}`);
-    this.incarichiService.getAllegatiData(rientro, key_ord, haccp, contatore).subscribe(
-      response => {
-        const blob = new Blob([response], { type: 'application/x-rar-compressed' });
-        saveAs(blob, 'FileTest.rar');
-      },
-      error => {
-        console.error('Error:', error);
-      }
+    console.log(
+      `Key_ord: ${key_ord}, Haccp: ${haccp}, Contatore: ${contatore}`
     );
+    const sub = this.incarichiService
+      .getAllegatiData(rientro, key_ord, haccp, contatore)
+      .subscribe(
+        (response) => {
+          const blob = new Blob([response], {
+            type: 'application/x-rar-compressed',
+          });
+          saveAs(blob, 'FileTest.rar');
+        },
+        (error) => {
+          console.error('Error:', error);
+        }
+      );
+    this.incarichiSub.add(sub); // Aggiungi la nuova sottoscrizione all'elenco delle sottoscrizioni
   }
- /* eseguiAzione() {
-    this.incarichiService.getAllegatiData().subscribe(
-      response => {
-        const blob = new Blob([response], { type: 'application/octet-stream' });
-
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          Per leggere come una stringa
-          const dataAsString = reader.result as string;
-          console.log(dataAsString);
-        };
-       reader.readAsText(blob); // o reader.readAsArrayBuffer(blob) per leggere come array di byte
-
-         Genera un nome file senza estensione
-      const filename = 'test';
-
-      Scarica il file
-      saveAs(blob, filename);
-      },
-      error => {
-        console.error('Error:', error);
-      }
-    );
-  }*/
   logDataRientro(allegato: any) {
     console.log(allegato);
   }
-
-
 }
