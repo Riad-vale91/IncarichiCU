@@ -28,7 +28,7 @@
               <div class="flex-container">
                 <ng-container *ngIf="allegato.data_Rientro; else noDataRientro">
                   {{allegato.data_Rientro | date: 'dd/MM/yyyy'}}
-                  <mat-icon (click)="eseguiAzione(1, allegato.contatore)" class="icon-right">image</mat-icon>
+   <!-- Per ora disabilitato <mat-icon (click)="eseguiAzione(1, allegato.contatore)" class="icon-right">image</mat-icon> -->
                 </ng-container>
                 <ng-template #noDataRientro>
                   <div>DATO NON PRESENTE</div>
