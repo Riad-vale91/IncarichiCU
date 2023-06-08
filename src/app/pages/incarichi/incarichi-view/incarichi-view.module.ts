@@ -5,6 +5,8 @@ import { IncarichiViewRoutingModule } from './incarichi-view-routing.module';
 import { IncarichiViewComponent } from './incarichi-view.component';
 import { IncarichiListModule } from '../incarichi-list/incarichi-list.module';
 import { IncarichiFilterModule } from '../incarichi-filter/incarichi-filter.module';
+import { TitlePageComponent } from 'src/app/components/title-page/title-page.component';
+import { TitlePageModule } from 'src/app/components/title-page/title-page.module';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { IncarichiFilterModule } from '../incarichi-filter/incarichi-filter.modu
     CommonModule,
     IncarichiViewRoutingModule,
     IncarichiListModule,
-    IncarichiFilterModule
+    IncarichiFilterModule,
+    TitlePageModule
   ]
 })
 export class IncarichiViewModule { }
