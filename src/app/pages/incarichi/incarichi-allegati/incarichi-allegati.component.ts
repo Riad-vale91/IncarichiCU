@@ -31,6 +31,7 @@ import { IncarichiService } from 'src/app/services/incarichi.service';
 export class IncarichiAllegatiComponent implements OnInit, OnDestroy {
   @Input() allegati: IAllegatiList[] = [];
   @Input() expandedElement: any;
+  isDownloading = false;
 
   public incarichiSub: Subscription = new Subscription(); // Inizializza la Subscription
 
@@ -42,6 +43,7 @@ export class IncarichiAllegatiComponent implements OnInit, OnDestroy {
   }
 
   eseguiAzione(rientro: number, contatore: number) {
+    this.isDownloading = true;
     const { key_ord, haccp } = this.incarichiService.getSelectedIncarichiData();
     console.log(
       `Key_ord: ${key_ord}, Haccp: ${haccp}, Contatore: ${contatore}`
@@ -53,10 +55,12 @@ export class IncarichiAllegatiComponent implements OnInit, OnDestroy {
           const blob = new Blob([response], {
             type: 'application/x-rar-compressed',
           });
+          this.isDownloading = false;
           saveAs(blob, 'FileTest.rar');
         },
         (error) => {
           console.error('Error:', error);
+          this.isDownloading = false;
         }
       );
     this.incarichiSub.add(sub); // Aggiungi la nuova sottoscrizione all'elenco delle sottoscrizioni
