@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { IIncarichi } from 'src/app/models/IIncarichi';
 import { MatTableDataSource } from '@angular/material/table';
 import { IAllegatiList } from 'src/app/models/IAllegatiList';
+
 import {
   animate,
   state,
@@ -17,6 +18,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-incarichi-list',
@@ -87,18 +89,20 @@ export class IncarichiListComponent implements OnInit {
   }
   getAllList() {
     this.isLoading = true;
-    this.incarichiSubcription.add(
-      // Aggiungi la nuova sottoscrizione all'elenco delle sottoscrizioni
-      this.incarichiService.getIncarichi().subscribe((resp: IIncarichi[]) => {
-        this.list = resp;
-        this.dataSource = new MatTableDataSource(this.list);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.paginator?.firstPage();
-        this.isLoading = false;
-        console.log('incarichi', this.list);
-      })
-    );
+    this.incarichiService.getIncarichi().subscribe((resp: IIncarichi[]) => {
+      // Ogni volta che ottieni una risposta, mappa la risposta a una nuova proprietà "dataFattTecnicoFormatted"
+      this.list = resp.map(incarico => ({
+        ...incarico,
+        dataFattTecnicoFormatted: incarico.dataFattTecnico
+        ? formatDate(incarico.dataFattTecnico, 'dd/MM/yyyy', 'en-US')
+        : ''
+      }));
+      this.dataSource = new MatTableDataSource(this.list);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator?.firstPage();
+      this.isLoading = false;
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -106,7 +110,6 @@ export class IncarichiListComponent implements OnInit {
   }
 
   onRowClicked(incarichi: IIncarichi) {
-    console.log('Row clicked: ', incarichi);
   }
   toggleExpandedElement(row: IIncarichi) {
     this.listAllegati = [];
@@ -116,7 +119,6 @@ export class IncarichiListComponent implements OnInit {
       this.incarichiService
         .getAllegati(row.key_ord, row.haccp)
         .subscribe((resp) => {
-          console.log('onRowClicked', resp);
           this.listAllegati = resp;
           this.expandedElement = this.expandedElement === row ? null : row;
         })

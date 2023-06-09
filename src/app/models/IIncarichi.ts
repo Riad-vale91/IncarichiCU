@@ -12,6 +12,7 @@ export interface IIncarichi {
     eseguito: string
     annullato: string
     dataFattTecnico: Date
+    dataFattTecnicoFormatted?: string;
     haccp: number
 
   }
