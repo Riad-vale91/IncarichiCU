@@ -1,4 +1,10 @@
-import {animate,state,style,transition,trigger,} from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as saveAs from 'file-saver';
 import { Subscription } from 'rxjs';
@@ -53,7 +59,7 @@ export class IncarichiAllegatiComponent implements OnInit, OnDestroy {
             type: 'application/x-rar-compressed',
           });
           this.isDownloading = false;
-          saveAs(blob, allegato.desc + ".rar");
+          saveAs(blob, allegato.desc + '.rar');
         },
         (error) => {
           console.error('Error:', error);

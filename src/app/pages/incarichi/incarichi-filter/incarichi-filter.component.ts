@@ -6,20 +6,17 @@ import { IncarichiService } from 'src/app/services/incarichi.service';
 @Component({
   selector: 'app-incarichi-filter',
   templateUrl: './incarichi-filter.component.html',
-  styleUrls: ['./incarichi-filter.component.scss']
+  styleUrls: ['./incarichi-filter.component.scss'],
 })
-export class IncarichiFilterComponent implements OnInit{
+export class IncarichiFilterComponent implements OnInit {
   searchText = '';
-  incarichi: string = "";
+  incarichi: string = '';
   filteredItems: IIncarichi[] = [];
 
-  constructor(private incarichiService: IncarichiService){}
+  constructor(private incarichiService: IncarichiService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   onSearchTextChanged(searchText: string) {
     this.incarichiService.updateSearch(searchText);
   }
-
 }
-
