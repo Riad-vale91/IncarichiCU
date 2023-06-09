@@ -42,21 +42,18 @@ export class IncarichiAllegatiComponent implements OnInit, OnDestroy {
     this.incarichiSub.unsubscribe();
   }
 
-  eseguiAzione(rientro: number, contatore: number) {
+  eseguiAzione(rientro: number, allegato: IAllegatiList) {
     this.isDownloading = true;
     const { key_ord, haccp } = this.incarichiService.getSelectedIncarichiData();
-    console.log(
-      `Key_ord: ${key_ord}, Haccp: ${haccp}, Contatore: ${contatore}`
-    );
     const sub = this.incarichiService
-      .getAllegatiData(rientro, key_ord, haccp, contatore)
+      .getAllegatiData(rientro, key_ord, haccp, allegato.contatore)
       .subscribe(
         (response) => {
           const blob = new Blob([response], {
             type: 'application/x-rar-compressed',
           });
           this.isDownloading = false;
-          saveAs(blob, 'FileTest.rar');
+          saveAs(blob, allegato.desc + ".rar");
         },
         (error) => {
           console.error('Error:', error);
@@ -64,8 +61,5 @@ export class IncarichiAllegatiComponent implements OnInit, OnDestroy {
         }
       );
     this.incarichiSub.add(sub); // Aggiungi la nuova sottoscrizione all'elenco delle sottoscrizioni
-  }
-  logDataRientro(allegato: any) {
-    console.log(allegato);
   }
 }
