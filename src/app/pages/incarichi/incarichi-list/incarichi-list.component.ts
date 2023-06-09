@@ -90,7 +90,6 @@ export class IncarichiListComponent implements OnInit {
   getAllList() {
     this.isLoading = true;
     this.incarichiService.getIncarichi().subscribe((resp: IIncarichi[]) => {
-      // Ogni volta che ottieni una risposta, mappa la risposta a una nuova proprietà "dataFattTecnicoFormatted"
       this.list = resp.map(incarico => ({
         ...incarico,
         dataFattTecnicoFormatted: incarico.dataFattTecnico
