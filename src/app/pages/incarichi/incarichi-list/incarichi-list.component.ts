@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { IIncarichi } from 'src/app/models/IIncarichi';
 import { MatTableDataSource } from '@angular/material/table';
 import { IAllegatiList } from 'src/app/models/IAllegatiList';
-
+import { forkJoin } from 'rxjs';
 import {
   animate,
   state,
@@ -38,7 +38,8 @@ export class IncarichiListComponent implements OnInit {
     'eseguito',
     'annullato',
     'dataFattTecnico',
-    'haccp',
+    'allegato',
+    // 'haccp',
   ];
   displayedColumnsAllegati: string[] = [
     'Keyord',
@@ -89,27 +90,41 @@ export class IncarichiListComponent implements OnInit {
   }
   getAllList() {
     this.isLoading = true;
-    this.incarichiService.getIncarichi().subscribe((resp: IIncarichi[]) => {
-      this.list = resp.map(incarico => ({
-        ...incarico,
-        dataFattTecnicoFormatted: incarico.dataFattTecnico
-        ? formatDate(incarico.dataFattTecnico, 'dd/MM/yyyy', 'en-US')
-        : ''
-      }));
-      this.dataSource = new MatTableDataSource(this.list);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.paginator?.firstPage();
-      this.isLoading = false;
-    });
+    this.incarichiService
+      .getIncarichi()
+      .subscribe((incarichi: IIncarichi[]) => {
+        this.list = [];
+        incarichi.forEach((incarico) => {
+          this.incarichiService
+            .getAllegati(incarico.key_ord, incarico.haccp)
+            .subscribe((allegati) => {
+              const incaricoWithAllegati = {
+                ...incarico,
+                allegati,
+                dataFattTecnicoFormatted: incarico.dataFattTecnico
+                  ? formatDate(incarico.dataFattTecnico, 'dd/MM/yyyy', 'en-US')
+                  : '',
+                hasAttachments: allegati && allegati.length > 0,
+              };
+              this.list.push(incaricoWithAllegati);
+              if (this.list.length === incarichi.length) {
+                // tutte le chiamate sono terminate
+                this.dataSource = new MatTableDataSource(this.list);
+                this.dataSource.sort = this.sort;
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.paginator?.firstPage();
+                this.isLoading = false;
+              }
+            });
+        });
+      });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onRowClicked(incarichi: IIncarichi) {
-  }
+  onRowClicked(incarichi: IIncarichi) {}
   toggleExpandedElement(row: IIncarichi) {
     this.listAllegati = [];
     this.incarichiService.setSelectedIncarichiData(row.key_ord, row.haccp);
@@ -122,5 +137,9 @@ export class IncarichiListComponent implements OnInit {
           this.expandedElement = this.expandedElement === row ? null : row;
         })
     );
+  }
+  hasAttachments(row: IIncarichi): boolean {
+    // Utilizzo la nuova proprietà 'hasAttachments' per capire se la riga ha allegati o meno
+    return row.hasAttachments ?? false;
   }
 }
